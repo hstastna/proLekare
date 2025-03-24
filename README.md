@@ -1,33 +1,52 @@
+## proLékaře.cz
+
+Welcome to the simple app to fetch and display articles for doctors and other professionals seamlessly!ň
+
+The app uses newest TypeScript with Tailwind CSS and is quite good adapted also for your mobile phone screen.
+
+GraphQL was used fo data fetching.
+
+The articles are sorted by `date updated` (descending order), as `public_from` a `public_till` attributes can be `null`. Also only those with shortcut "PL" are listed.
+
+You can click on "Další stránka" if there are more articles (contents) to see.
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+## Visuals
+
+![Screenshot 1](./public/screenshots/scr1.png)
+![Screenshot 2](./public/screenshots/scr2.png)
+![Screenshot 3](./public/screenshots/scr3.png)
+![Screenshot 4](./public/screenshots/scr4.png)
+
 ## Getting Started
+
+```bash
+npm install
+```
 
 First, run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-## Learn More
+## Further improvements/coming soon:
 
-To learn more about Next.js, take a look at the following resources:
+This project is very fresh, hence lots of improvements can be done, for example:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- parse fetched html safely to be nicely displayed
+- improve responsiveness, use hamburger button for mobile screens for navigation
+- improve the existing accessibility
+- add unit/integration testing
+- improve the components code structure
+- fix warnings in browser console
+- improve dark mode support
+  and more!
 
 ## Deploy on Vercel
 
