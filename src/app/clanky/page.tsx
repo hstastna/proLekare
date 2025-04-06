@@ -84,8 +84,7 @@ type ContentsProps = {
 };
 
 const Contents: FC<ContentsProps> = async ({ searchParams }) => {
-  const params = await searchParams;
-  const page = params?.page || "1";
+  const page = (await searchParams)?.page || "1";
   const offset = (parseInt(page, 10) - 1) * CONTENTS_PER_PAGE;
 
   const data = await fetchGraphQL(
