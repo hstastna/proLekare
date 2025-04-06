@@ -1,8 +1,8 @@
 "use client";
 
-import { FC, MouseEvent, useState } from "react";
+import { FC, MouseEvent } from "react";
 import { navItems } from "@/lib/constants";
-import { redirect } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 type NextContentButtonProps = {
   totalPages: number;
@@ -11,17 +11,17 @@ type NextContentButtonProps = {
 export const NextContentButton: FC<NextContentButtonProps> = ({
   totalPages,
 }) => {
-  const [page, setPage] = useState(1);
+  const router = useRouter();
+  const searchParams = useSearchParams();
+
+  const page = parseInt(searchParams.get("page") || "1", 10);
 
   const isDisabled = page >= totalPages;
 
   const handleClick = async (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
 
-    const newPage = page + 1;
-
-    setPage(newPage);
-    redirect(`${navItems.clanky.href}?page=${newPage}`);
+    router.push(`${navItems.clanky.href}?page=${page + 1}`);
   };
 
   return (
