@@ -39,7 +39,7 @@ type Aggregated = {
 };
 
 // Actually data type is very restricted, extend eventually
-export type GraphQLResponse = {
+type GraphQLResponse = {
   data?: {
     contents?: Content[];
     contents_aggregated?: Aggregated[];

@@ -80,11 +80,12 @@ const GET_CONTENTS_WITH_NUMBER_AND_PUBLIC_FROM_DATE = `
 // Note: public_from is null, use date_updated for sorting, "-" for descending
 
 type ContentsProps = {
-  searchParams: Record<string, string>;
+  searchParams: Promise<Record<string, string>>;
 };
 
 const Contents: FC<ContentsProps> = async ({ searchParams }) => {
-  const page = searchParams?.page || "1";
+  const params = await searchParams;
+  const page = params?.page || "1";
   const offset = (parseInt(page, 10) - 1) * CONTENTS_PER_PAGE;
 
   const data = await fetchGraphQL(

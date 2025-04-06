@@ -1,8 +1,5 @@
-"use client";
-
-import { fetchGraphQL, GraphQLResponse } from "@/lib/fetchGraphQL";
-import { notFound, redirect, useParams } from "next/navigation";
-import { FC, useState, useEffect } from "react";
+import { fetchGraphQL } from "@/lib/fetchGraphQL";
+import { notFound, redirect } from "next/navigation";
 import { getImageUrl } from "@/lib/helpers";
 import { lora } from "@/lib/fonts";
 import { LabelsPanel } from "@/components/layout/LabelsPanel";
@@ -10,6 +7,7 @@ import { DatePanel } from "@/components/layout/DatePanel";
 import { Perex } from "@/components/layout/Perex";
 import Image from "next/image";
 import { Spacer } from "@/components/common/Spacer";
+import { FC } from "react";
 
 const GET_CONTENT = `
   query GetContentById($id: ID!) {
@@ -36,44 +34,21 @@ const GET_CONTENT = `
   }
 `;
 
-//Note: for client component, use React Query eventually
+type ContentProps = {
+  params: Promise<{ id: string }>;
+};
 
-const Content: FC = () => {
-  const { id } = useParams();
-  const [data, setData] = useState<GraphQLResponse["data"] | null>(null);
-  const [error, setError] = useState(false);
-  const [loading, setLoading] = useState(true);
+const Content: FC<ContentProps> = async ({ params }) => {
+  const { id } = await params;
 
-  useEffect(() => {
-    const fetchData = async () => {
-      if (id) {
-        try {
-          const result = await fetchGraphQL(GET_CONTENT, { id: id });
-
-          if (!result) {
-            setError(true);
-            notFound();
-          }
-
-          setData(result);
-        } catch (error) {
-          console.error(error);
-          notFound();
-        } finally {
-          setLoading(false);
-        }
-      }
-    };
-
-    fetchData();
-  }, [id]);
-
-  if (loading) {
-    return <div>Loading...</div>;
+  if (!id) {
+    notFound();
   }
 
-  if (error || !data) {
-    return <div>Error loading content</div>;
+  const data = await fetchGraphQL(GET_CONTENT, { id: id });
+
+  if (!data) {
+    notFound();
   }
 
   const contentData = data?.contents_by_id;
