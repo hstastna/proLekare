@@ -36,7 +36,6 @@ const RootLayout: FC<RootLayoutProps> = ({ children }) => (
               alt={PRO_LEKARE_CZ_TITLE}
               width={248}
               height={40}
-              priority
             />
           </Link>
           <Navigation />
