@@ -1,6 +1,6 @@
 ## proLékaře.cz
 
-Welcome to the simple app to fetch and display articles for doctors and other professionals seamlessly!ň
+Welcome to the simple app to fetch and display articles for doctors and other professionals seamlessly!
 
 The app uses newest TypeScript with Tailwind CSS and is quite good adapted also for your mobile phone screen.
 
